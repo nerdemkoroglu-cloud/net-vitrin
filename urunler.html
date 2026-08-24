@@ -32,21 +32,13 @@
 </header>
 
 <section class="hero" id="hero">
-  <div class="hero-viewer">
-    <model-viewer
-      id="heroModel"
-      src=""
-      alt="Öne çıkan 3D model"
-      camera-controls
-      auto-rotate
-      shadow-intensity="1"
-      exposure="1"
-      environment-image="neutral"
-      ar>
-    </model-viewer>
+  <div class="hero-viewer" id="heroViewer">
+    <div class="hero-placeholder" id="heroPlaceholder">
+      <p>Bir ürün seçerek büyük görünümde incele.</p>
+    </div>
   </div>
 
-  <div class="hero-spec" id="heroSpec">
+  <div class="hero-spec" id="heroSpec" style="display:none;">
     <div class="spec-eyebrow">ÖNE ÇIKAN MODEL</div>
     <p class="spec-id" id="heroId"></p>
     <h1 class="spec-title" id="heroBaslik">Model adı</h1>
