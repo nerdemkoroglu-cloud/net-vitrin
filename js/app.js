@@ -5,6 +5,7 @@ const SIPARIS_WHATSAPP = "905356537047"; // örnek: "905XXXXXXXXX" — boşsa e-
 function heroRenderEt(urun) {
   if (!urun) return;
 
+  document.getElementById("hero").style.display = "grid";
   document.getElementById("heroSpec").style.display = "flex";
 
   const viewer = document.getElementById("heroViewer");
