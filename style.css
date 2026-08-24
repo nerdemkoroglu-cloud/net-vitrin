@@ -280,3 +280,46 @@ a{ color: inherit; text-decoration: none; }
   .hero-viewer{ border-right:none; border-bottom: 1px solid var(--line); min-height: 320px; }
   .spec-title{ font-size: 30px; }
 }
+/* ---------- Landing ---------- */
+.landing{
+  min-height: auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 80px 40px;
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.landing-content{ max-width: 560px; margin: 0 auto; }
+.landing-mark{ display:block; font-size: 40px; color: var(--amber); margin-bottom: 20px; }
+.landing-title{
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+.landing-desc{
+  color: var(--ink-dim);
+  font-size: 16px;
+  margin-bottom: 36px;
+}
+.landing-btn{
+  display:inline-block;
+  font-size: 14px;
+  padding: 14px 28px;
+}
+.header-logo{
+  width: 32px; height: 32px;
+  --poster-color: transparent;
+  pointer-events: none;
+}
+.landing-logo{
+  width: 140px; height: 140px;
+  margin: 0 auto 20px;
+  --poster-color: transparent;
+  pointer-events: none;
+}

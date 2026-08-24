@@ -10,137 +10,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
-
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="brand">
-    <span class="brand-mark">◇</span>
+    <model-viewer class="header-logo" src="modeller/net-vitrin.glb" auto-rotate rotation-per-second="30deg" camera-controls="false" disable-zoom interaction-prompt="none"></model-viewer>
     <span class="brand-text">NET-VİTRİN</span>
   </div>
   <nav class="site-nav">
-    <a href="#urunler">Ürünler</a>
-    <a href="#ozel-siparis">Özel Sipariş</a>
-    <a href="#iletisim">İletişim</a>
+    <a href="urunler.html">Ürünler</a>
+    <a href="urunler.html#iletisim">İletişim</a>
   </nav>
-  <button class="cart-btn" id="sepetButon">
-    SEPET <span class="cart-count" id="sepetSayac">0</span>
-  </button>
 </header>
 
-<section class="hero" id="hero">
-  <div class="hero-viewer">
-    <model-viewer
-      id="heroModel"
-      src=""
-      alt="Öne çıkan 3D model"
-      camera-controls
-      auto-rotate
-      shadow-intensity="1"
-      exposure="1"
-      environment-image="neutral"
-      ar>
-    </model-viewer>
-  </div>
-
-  <div class="hero-spec" id="heroSpec">
-    <div class="spec-eyebrow">ÖNE ÇIKAN MODEL</div>
-    <p class="spec-id" id="heroId"></p>
-    <h1 class="spec-title" id="heroBaslik">Model adı</h1>
-    <p class="spec-desc" id="heroAciklama">Açıklama buraya gelecek.</p>
-
-    <dl class="spec-list" id="heroOzellikler">
-      <!-- JS ile doldurulacak: ölçü, malzeme, üretim süresi -->
-    </dl>
-
-    <p class="spec-atif" id="heroAtif" style="display:none;"></p>
-
-    <div class="spec-price-row">
-      <span class="spec-price" id="heroFiyat">— ₺</span>
-      <button class="btn-primary" id="heroSepetEkle">SEPETE EKLE</button>
-    </div>
+<section class="landing">
+  <div class="landing-content">
+    <model-viewer class="landing-logo" src="modeller/net-vitrin.glb" auto-rotate rotation-per-second="30deg" camera-controls="false" disable-zoom interaction-prompt="none"></model-viewer>
+    <h1 class="landing-title">NET-VİTRİN</h1>
+    <p class="landing-desc">3D tasarımlarımı inceleyebileceğin, beğendiğin ürünü sipariş talebine dönüştürebileceğin vitrin. Kendi tasarımlarım, seçili hazır modeller ve sana özel üretimler burada.</p>
+    <a href="urunler.html" class="btn-primary landing-btn">ÜRÜNLERİ İNCELE</a>
   </div>
 </section>
 
-<section class="catalog" id="urunler">
-  <div class="catalog-header">
-    <span class="catalog-index">01</span>
-    <h2>Katalog</h2>
-  </div>
-  <div class="product-grid" id="urunIzgara">
-    <!-- Ürün kartları JS ile doldurulacak -->
-  </div>
-</section>
-
-<section class="custom-order" id="ozel-siparis">
-  <div class="catalog-header">
-    <span class="catalog-index">02</span>
-    <h2>Özel Sipariş</h2>
-  </div>
-  <p class="custom-order-desc">Aklındaki tasarımı anlat, varsa referans fotoğraf ekle. İnceleyip sana dönüş yapacağım. Bu bir sipariş taahhüdü değildir, ön değerlendirme talebidir.</p>
-
-  <form class="custom-order-form" id="ozelSiparisForm">
-    <label>
-      Ad Soyad
-      <input type="text" name="adSoyad" required>
-    </label>
-      <label>
-      Telefon
-      <input type="tel" name="telefon" id="ozelTelefon" placeholder="05XX XXX XX XX">
-    </label>
-    <label>
-      E-posta
-      <input type="email" name="eposta" id="ozelEposta">
-    </label>
-
-    <label>
-      Talep Açıklaması
-      <textarea name="aciklama" rows="4" required placeholder="Ne tür bir ürün istiyorsun, ölçü, malzeme tercihi vb."></textarea>
-    </label>
-    <label>
-      Referans Görsel (opsiyonel)
-      <input type="file" name="gorsel" accept="image/*">
-    </label>
-    <button type="submit" class="btn-primary">TALEBİ GÖNDER</button>
-    <p class="custom-order-status" id="ozelSiparisDurum"></p>
-  </form>
-</section>
-
-<aside class="cart-panel" id="sepetPanel">
-  <div class="cart-panel-header">
-    <h3>Sepet</h3>
-    <button id="sepetKapat">✕</button>
-  </div>
-  <div class="cart-items" id="sepetIcerik"></div>
-  <div class="cart-footer">
-    <div class="cart-total-row">
-      <span>Toplam</span>
-      <span id="sepetToplam">0 ₺</span>
-    </div>
-    <label class="cart-field">
-      Ad Soyad
-      <input type="text" id="sepetAd" placeholder="Ad Soyad">
-    </label>
-    <label class="cart-field">
-      Telefon / E-posta
-      <input type="text" id="sepetIletisim" placeholder="Telefon veya e-posta">
-    </label>
-    <button class="btn-primary btn-full" id="siparisGonder">SİPARİŞİ GÖNDER</button>
-    <p class="cart-note" id="sepetDurum"></p>
-    <p class="cart-note">Ödeme bu site üzerinden alınmaz. Sipariş talebiniz WhatsApp/e-posta ile tarafımıza iletilir.</p>
-  </div>
-</aside>
-<div class="cart-overlay" id="sepetOverlay"></div>
-
-<footer class="site-footer" id="iletisim">
-  <p>Sorularınız için: <a href="mailto:ornek@eposta.com">ornek@eposta.com</a></p>
+<footer class="site-footer">
+  <p>Sorularınız için: <a href="mailto:nerdemkoroglu@gmail.com">nerdemkoroglu@gmail.com</a></p>
 </footer>
 
-<script src="js/urunler.js"></script>
-<script src="js/sepet.js"></script>
-<script src="js/ozel-siparis.js"></script>
-<script src="js/app.js"></script>
 </body>
 </html>
