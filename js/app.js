@@ -3,34 +3,36 @@ const SIPARIS_EPOSTA = "ornek@eposta.com";
 const SIPARIS_WHATSAPP = "905356537047"; // örnek: "905XXXXXXXXX" — boşsa e-posta kullanılır
 
 function heroRenderEt(urun) {
-  const hero = urun || URUNLER.find(u => u.oneCikan) || URUNLER[0];
-  if (!hero) return;
+  if (!urun) return;
 
-  document.getElementById("heroModel").src = hero.model;
-  document.getElementById("heroBaslik").textContent = hero.isim;
-  document.getElementById("heroId").textContent = hero.id;
-  document.getElementById("heroAciklama").textContent = hero.aciklama;
-  document.getElementById("heroFiyat").textContent = hero.fiyat.toLocaleString("tr-TR") + " ₺";
+  document.getElementById("heroSpec").style.display = "flex";
+
+  const viewer = document.getElementById("heroViewer");
+  viewer.innerHTML = `<model-viewer src="${urun.model}" camera-controls auto-rotate shadow-intensity="1" exposure="1" environment-image="neutral" ar></model-viewer>`;
+
+  document.getElementById("heroBaslik").textContent = urun.isim;
+  document.getElementById("heroAciklama").textContent = urun.aciklama;
+  document.getElementById("heroFiyat").textContent = urun.fiyat.toLocaleString("tr-TR") + " ₺";
 
   document.getElementById("heroOzellikler").innerHTML = `
-    <div><dt>Ölçü</dt><dd>${hero.olcu}</dd></div>
-    <div><dt>Malzeme</dt><dd>${hero.malzeme}</dd></div>
-    <div><dt>Üretim Süresi</dt><dd>${hero.uretimSuresi}</dd></div>
+    <div><dt>Ölçü</dt><dd>${urun.olcu}</dd></div>
+    <div><dt>Malzeme</dt><dd>${urun.malzeme}</dd></div>
+    <div><dt>Üretim Süresi</dt><dd>${urun.uretimSuresi}</dd></div>
   `;
 
   const atifEl = document.getElementById("heroAtif");
-  if (hero.atif) {
-    atifEl.textContent = hero.atif;
+  if (urun.atif) {
+    atifEl.textContent = urun.atif;
     atifEl.style.display = "block";
   } else {
     atifEl.style.display = "none";
   }
 
-    const heroBtn = document.getElementById("heroSepetEkle");
-  if (hero.stokta) {
+  const heroBtn = document.getElementById("heroSepetEkle");
+  if (urun.stokta) {
     heroBtn.textContent = "SEPETE EKLE";
     heroBtn.disabled = false;
-    heroBtn.onclick = () => sepeteEkle(hero.id);
+    heroBtn.onclick = () => sepeteEkle(urun.id);
   } else {
     heroBtn.textContent = "STOKTA YOK";
     heroBtn.disabled = true;
