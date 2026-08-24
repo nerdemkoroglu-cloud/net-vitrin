@@ -8,20 +8,6 @@
 const URUNLER = [
   {
     id: "net-001",
-    isim: "Astronot Figürü",
-    aciklama: "Demo amaçlı örnek 3D model. Kendi .glb dosyanla değiştir.",
-    model: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
-    olcu: "180 x 90 x 90 mm",
-    malzeme: "PLA",
-    uretimSuresi: "6 saat",
-    fiyat: 450,
-    oneCikan: true,
-    tip: "A",
-    atif: "",
-    stokta: false
-  },
-  {
-    id: "net-002",
     isim: "Mustafa Kemal Atatürk",
     aciklama: "Türkiye Cumhuriyeti devletinin kurucusu.",
     model: "modeller/Mustafa_Kemal_Ataturk.glb",
@@ -29,10 +15,24 @@ const URUNLER = [
     malzeme: "PLA",
     uretimSuresi: "4 sa,9 dk",
     fiyat: 700,
-    oneCikan: false,
+    oneCikan: true,
     tip: "B",
     atif: "",
     stokta: true
+  },
+    {
+    id: "net-002",
+    isim: "Astronot Figürü",
+    aciklama: "Demo amaçlı örnek 3D model. Kendi .glb dosyanla değiştir.",
+    model: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
+    olcu: "180 x 90 x 90 mm",
+    malzeme: "PLA",
+    uretimSuresi: "6 saat",
+    fiyat: 450,
+    oneCikan: false,
+    tip: "A",
+    atif: "",
+    stokta: false
   },
   {
     id: "net-003",
