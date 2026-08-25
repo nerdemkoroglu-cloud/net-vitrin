@@ -13,7 +13,7 @@ function heroRenderEt(urun) {
 
   document.getElementById("heroBaslik").textContent = urun.isim;
   document.getElementById("heroAciklama").textContent = urun.aciklama;
-  document.getElementById("heroFiyat").textContent = urun.fiyat.toLocaleString("tr-TR") + " ₺";
+  document.getElementById("heroFiyat").textContent = "———";
 
   document.getElementById("heroOzellikler").innerHTML = `
     <div><dt>Ölçü</dt><dd>${urun.olcu}</dd></div>
@@ -60,7 +60,7 @@ function urunKartiOlustur(urun) {
       <div class="product-meta">${urun.olcu} · ${urun.malzeme}</div>
       ${atifHtml}
       <div class="product-row">
-        <span class="product-price">${urun.fiyat.toLocaleString("tr-TR")} ₺</span>
+        <span class="product-price">———</span>
         ${butonHtml}
       </div>
     </div>
@@ -78,10 +78,21 @@ function urunKartiOlustur(urun) {
   return kart;
 }
 
-function izgaraRenderEt() {
+function izgaraRenderEt(kategori = "Tümü") {
   const izgara = document.getElementById("urunIzgara");
   izgara.innerHTML = "";
-  URUNLER.forEach(urun => izgara.appendChild(urunKartiOlustur(urun)));
+  const filtreli = kategori === "Tümü" ? URUNLER : URUNLER.filter(u => u.kategori === kategori);
+  filtreli.forEach(urun => izgara.appendChild(urunKartiOlustur(urun)));
+}
+
+function kategoriFiltreBagla() {
+  document.querySelectorAll(".filtre-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
+      btn.classList.add("aktif");
+      izgaraRenderEt(btn.dataset.kategori);
+    });
+  });
 }
 
 function sepetPanelBagla() {
@@ -107,6 +118,7 @@ function sepetPanelBagla() {
 document.addEventListener("DOMContentLoaded", () => {
   heroRenderEt();
   izgaraRenderEt();
+  kategoriFiltreBagla();
   sepetPanelBagla();
   sepetGoruntuleGuncelle();
 });

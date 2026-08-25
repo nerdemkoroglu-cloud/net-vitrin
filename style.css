@@ -323,3 +323,15 @@ a{ color: inherit; text-decoration: none; }
   --poster-color: transparent;
   pointer-events: none;
 }
+.kategori-filtre{ display:flex; gap:10px; margin-bottom: 24px; flex-wrap: wrap; }
+.filtre-btn{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.filtre-btn:hover{ border-color: var(--steel); color: var(--ink); }
+.filtre-btn.aktif{ border-color: var(--amber); color: var(--amber); }

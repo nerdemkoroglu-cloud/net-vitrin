@@ -44,7 +44,7 @@ function sepetGoruntuleGuncelle() {
   const toplamEl = document.getElementById("sepetToplam");
 
   sayacEl.textContent = sepet.reduce((n, k) => n + k.adet, 0);
-  toplamEl.textContent = sepetToplamTutar().toLocaleString("tr-TR") + " ₺";
+  toplamEl.textContent = "———";
 
   icerikEl.innerHTML = "";
   if (sepet.length === 0) {
@@ -60,7 +60,7 @@ function sepetGoruntuleGuncelle() {
     satir.innerHTML = `
       <div>
         <div class="cart-item-name">${urun.isim}</div>
-        <div class="cart-item-meta">${(urun.fiyat * kalem.adet).toLocaleString("tr-TR")} ₺</div>
+        <div class="cart-item-meta">Adet: ${kalem.adet}</div>
         <div class="cart-item-qty">
           <button class="qty-btn" data-id="${urun.id}" data-aksiyon="azalt">−</button>
           <span>${kalem.adet}</span>

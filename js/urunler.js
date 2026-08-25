@@ -17,6 +17,7 @@ const URUNLER = [
     fiyat: 700,
     oneCikan: true,
     tip: "B",
+    kategori: "Figür",
     atif: "",
     stokta: true
   },
@@ -31,6 +32,7 @@ const URUNLER = [
     fiyat: 450,
     oneCikan: false,
     tip: "A",
+    kategori: "Figür",
     atif: "",
     stokta: false
   },
@@ -45,6 +47,7 @@ const URUNLER = [
     fiyat: 440,
     oneCikan: false,
     tip: "A",
+    kategori: "Elektronik",
     atif: "",
     stokta: true
   },
