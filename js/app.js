@@ -2,18 +2,49 @@
 const SIPARIS_EPOSTA = "ornek@eposta.com";
 const SIPARIS_WHATSAPP = "905356537047"; // örnek: "905XXXXXXXXX" — boşsa e-posta kullanılır
 
+function medyaHtmlUret(item) {
+  if (!item) {
+    return `<div class="medya-placeholder">Görsel yakında eklenecek</div>`;
+  }
+  if (item.tip === "model") {
+    return `<model-viewer src="${item.src}" camera-controls auto-rotate shadow-intensity="0.8" exposure="1" environment-image="neutral" ar></model-viewer>`;
+  }
+  return `<img src="${item.src.replace('uc?export=view&id=', 'thumbnail?id=')}&sz=w1000" alt="" referrerpolicy="no-referrer">`;
+}
+
 function heroRenderEt(urun) {
   if (!urun) return;
 
   document.getElementById("hero").style.display = "grid";
   document.getElementById("heroSpec").style.display = "flex";
 
+  const medyaListesi = urunMedyaListesi(urun);
   const viewer = document.getElementById("heroViewer");
-  viewer.innerHTML = `<model-viewer src="${urun.model}" camera-controls auto-rotate shadow-intensity="1" exposure="1" environment-image="neutral" ar></model-viewer>`;
+  viewer.innerHTML = `
+    <div class="hero-medya-ana" id="heroMedyaAna">${medyaHtmlUret(medyaListesi[0])}</div>
+    ${medyaListesi.length > 1 ? `<div class="hero-thumb-serit" id="heroThumbSerit"></div>` : ""}
+  `;
+
+  if (medyaListesi.length > 1) {
+    const serit = document.getElementById("heroThumbSerit");
+    medyaListesi.forEach((item, index) => {
+      const thumb = document.createElement("button");
+      thumb.className = "hero-thumb" + (index === 0 ? " aktif" : "");
+      thumb.innerHTML = item.tip === "model"
+        ? `<span class="hero-thumb-3d">3D</span>`
+        : `<img src="${item.src.replace('uc?export=view&id=', 'thumbnail?id=')}&sz=w200" alt="" referrerpolicy="no-referrer">`;
+      thumb.addEventListener("click", () => {
+        document.getElementById("heroMedyaAna").innerHTML = medyaHtmlUret(item);
+        serit.querySelectorAll(".hero-thumb").forEach(t => t.classList.remove("aktif"));
+        thumb.classList.add("aktif");
+      });
+      serit.appendChild(thumb);
+    });
+  }
 
   document.getElementById("heroBaslik").textContent = urun.isim;
   document.getElementById("heroAciklama").textContent = urun.aciklama;
-  document.getElementById("heroFiyat").textContent = "———";
+  document.getElementById("heroFiyat").textContent = urun.etiket ? (urun.fiyat.toLocaleString("tr-TR") + " ₺") : "———";
 
   document.getElementById("heroOzellikler").innerHTML = `
     <div><dt>Ölçü</dt><dd>${urun.olcu}</dd></div>
@@ -49,9 +80,11 @@ function urunKartiOlustur(urun) {
   const butonHtml = urun.stokta
     ? `<button class="btn-add" data-id="${urun.id}">SEPETE EKLE</button>`
     : `<button class="btn-add" disabled>STOKTA YOK</button>`;
+  const medyaListesi = urunMedyaListesi(urun);
+  const gorselHtml = medyaHtmlUret(medyaListesi[0]);
   kart.innerHTML = `
     <div class="card-media">
-      <model-viewer src="${urun.model}" camera-controls auto-rotate shadow-intensity="0.8"></model-viewer>
+      ${gorselHtml}
       ${stokEtiket}
     </div>
     <div class="product-card-body">
@@ -60,7 +93,7 @@ function urunKartiOlustur(urun) {
       <div class="product-meta">${urun.olcu} · ${urun.malzeme}</div>
       ${atifHtml}
       <div class="product-row">
-        <span class="product-price">———</span>
+        <span class="product-price">${urun.etiket ? (urun.fiyat.toLocaleString("tr-TR") + " ₺") : "———"}</span>
         ${butonHtml}
       </div>
     </div>
@@ -85,7 +118,13 @@ function izgaraRenderEt(kategori = "Tümü") {
   filtreli.forEach(urun => izgara.appendChild(urunKartiOlustur(urun)));
 }
 
-function kategoriFiltreBagla() {
+function kategoriFiltreOlustur() {
+  const filtreEl = document.getElementById("kategoriFiltre");
+  filtreEl.innerHTML = `<button class="filtre-btn aktif" data-kategori="Tümü">Tümü</button>`;
+  KATEGORILER.forEach(k => {
+    filtreEl.innerHTML += `<button class="filtre-btn" data-kategori="${k.kategori}">${k.kategori}</button>`;
+  });
+
   document.querySelectorAll(".filtre-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".filtre-btn").forEach(b => b.classList.remove("aktif"));
@@ -115,10 +154,11 @@ function sepetPanelBagla() {
   document.getElementById("siparisGonder").addEventListener("click", sepetSiparisiGonder);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await veriYukle();
   heroRenderEt();
   izgaraRenderEt();
-  kategoriFiltreBagla();
+  kategoriFiltreOlustur();
   sepetPanelBagla();
   sepetGoruntuleGuncelle();
 });

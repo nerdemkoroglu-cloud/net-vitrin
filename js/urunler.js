@@ -1,55 +1,28 @@
-// Ürün verisi. Her ürün için:
-// id, isim, aciklama, model (glb dosya yolu), poster (önizleme görsel, opsiyonel),
-// olcu, malzeme, uretimSuresi, fiyat, oneCikan (hero'da gösterilecek mi)
-// tip: "A" kendi tasarımım | "B" hazır model (indirilen)
-// atif: sadece tip "B" için doldur — örnek: "Small parts case — orijinal tasarım: dguisadom (Thingiverse, CC BY-SA)"
-// stokta: true (satışta) | false (stokta yok, sepete eklenemez, etiket gösterilir)
+const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwtZRC8W1zKp8Vyox-vHhb9WIUyF9lskFBID6g0LmovKUodXA6vK2y4vdZqVHPVMVs/exec";
+const SHEETS_ANAHTAR = "Parola.08";
 
-const URUNLER = [
-  {
-    id: "net-001",
-    isim: "Mustafa Kemal Atatürk",
-    aciklama: "Türkiye Cumhuriyeti devletinin kurucusu.",
-    model: "modeller/Mustafa_Kemal_Ataturk.glb",
-    olcu: "88,25 x 103,99 x 120,00 mm",
-    malzeme: "PLA",
-    uretimSuresi: "4 sa,9 dk",
-    fiyat: 700,
-    oneCikan: true,
-    tip: "B",
-    kategori: "Figür",
-    atif: "",
-    stokta: true
-  },
-    {
-    id: "net-002",
-    isim: "Astronot Figürü",
-    aciklama: "Demo amaçlı örnek 3D model. Kendi .glb dosyanla değiştir.",
-    model: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
-    olcu: "180 x 90 x 90 mm",
-    malzeme: "PLA",
-    uretimSuresi: "6 saat",
-    fiyat: 450,
-    oneCikan: false,
-    tip: "A",
-    kategori: "Figür",
-    atif: "",
-    stokta: false
-  },
-  {
-    id: "net-003",
-    isim: "net-Kedi",
-    aciklama: "Arduino ile çalışan kedi figürü. Elektronik bileşenler dahil değildir.",
-    model: "modeller/net-Kedi.glb",
-    olcu: "100,54 x 105,00 x 91,31 mm",
-    malzeme: "PLA",
-    uretimSuresi: "12 sa, 24 dk",
-    fiyat: 440,
-    oneCikan: false,
-    tip: "A",
-    kategori: "Elektronik",
-    atif: "",
-    stokta: true
-  },
+let URUNLER = [];
+let KATEGORILER = [];
 
-];
+function dosyaVarMi(url) {
+  return fetch(url, { method: "HEAD" }).then(r => r.ok).catch(() => false);
+}
+
+async function veriYukle() {
+  const yanit = await fetch(`${SHEETS_ENDPOINT}?anahtar=${encodeURIComponent(SHEETS_ANAHTAR)}`);
+  const veri = await yanit.json();
+  KATEGORILER = veri.kategoriler.sort((a, b) => a.sira - b.sira);
+
+  URUNLER = await Promise.all(veri.urunler.map(async (u) => {
+    u.model = u.hariciModel && u.hariciModel.trim() ? u.hariciModel.trim() : `modeller/${u.dosyaAdi}.glb`;
+    u.modelVarMi = await dosyaVarMi(u.model);
+    return u;
+  }));
+}
+
+function urunMedyaListesi(urun) {
+  const liste = [];
+  if (urun.modelVarMi) liste.push({ tip: "model", src: urun.model });
+  (urun.gorselListesi || []).forEach(g => liste.push({ tip: "gorsel", src: g }));
+  return liste;
+}

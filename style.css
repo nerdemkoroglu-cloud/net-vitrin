@@ -10,6 +10,7 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-fiyat: Arial, Helvetica, sans-serif;
 }
 
 *{ box-sizing: border-box; margin:0; padding:0; }
@@ -68,8 +69,10 @@ a{ color: inherit; text-decoration: none; }
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 32px 32px;
   border-right: 1px solid var(--line);
+  height: 560px;
+  overflow: hidden;
 }
-.hero-viewer model-viewer{ width:100%; height:100%; min-height: 420px; }
+.hero-viewer model-viewer{ width:100%; height:100%; }
 
 .hero-spec{
   padding: 48px;
@@ -117,7 +120,7 @@ a{ color: inherit; text-decoration: none; }
 .product-atif{ font-size: 11px; color: var(--ink-dim); font-style: italic; }
 
 .spec-price-row{ display:flex; align-items:center; gap: 20px; }
-.spec-price{ font-family: var(--font-display); font-size: 26px; color: var(--amber); }
+.spec-price{ font-family: var(--font-fiyat); font-size: 26px; color: var(--amber); }
 
 .btn-primary{
   font-family: var(--font-mono);
@@ -174,7 +177,7 @@ a{ color: inherit; text-decoration: none; }
 .product-name{ font-family: var(--font-display); font-size: 16px; }
 .product-meta{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); }
 .product-row{ display:flex; justify-content:space-between; align-items:center; margin-top: 8px; }
-.product-price{ font-family: var(--font-mono); color: var(--amber); font-size: 15px; }
+.product-price{ font-family: var(--font-fiyat); color: var(--amber); font-size: 15px; }
 .btn-add{
   font-family: var(--font-mono);
   font-size: 12px;
@@ -257,7 +260,7 @@ a{ color: inherit; text-decoration: none; }
 .cart-field input:focus{ outline: none; border-color: var(--steel); }
 .cart-btn-row{ display:flex; gap: 10px; margin-bottom: 14px; }
 .btn-half{ flex: 1; font-size: 12px; padding: 12px 8px; }
-.cart-total-row{ display:flex; justify-content:space-between; font-family: var(--font-mono); margin-bottom: 14px; font-size: 15px; }
+.cart-total-row{ display:flex; justify-content:space-between; font-family: var(--font-fiyat); margin-bottom: 14px; font-size: 19px; }
 .cart-note{ font-size: 11px; color: var(--ink-dim); margin-top: 10px; }
 
 .cart-overlay{
@@ -277,7 +280,7 @@ a{ color: inherit; text-decoration: none; }
 /* ---------- Responsive ---------- */
 @media (max-width: 860px){
   .hero{ grid-template-columns: 1fr; }
-  .hero-viewer{ border-right:none; border-bottom: 1px solid var(--line); min-height: 320px; }
+  .hero-viewer{ border-right:none; border-bottom: 1px solid var(--line); height: 320px; }
   .spec-title{ font-size: 30px; }
 }
 /* ---------- Landing ---------- */
@@ -335,3 +338,42 @@ a{ color: inherit; text-decoration: none; }
 }
 .filtre-btn:hover{ border-color: var(--steel); color: var(--ink); }
 .filtre-btn.aktif{ border-color: var(--amber); color: var(--amber); }
+.cart-item-fiyat{
+  font-family: var(--font-fiyat);
+  font-size: 15px;
+  color: var(--amber);
+  margin-top: 4px;
+}
+
+/* ---------- Hero medya galerisi ---------- */
+.hero-viewer{ position: relative; }
+.hero-medya-ana{ width:100%; height:100%; }
+.hero-medya-ana model-viewer{ width:100%; height:100%; --poster-color: transparent; }
+.hero-medya-ana img{ width:100%; height:100%; object-fit:contain; background: var(--panel); display:block; }
+.medya-placeholder{
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink-dim); font-family:var(--font-mono); font-size:12px;
+  text-align:center; padding:10px;
+}
+.hero-thumb-serit{
+  position:absolute; bottom:12px; left:12px; right:12px;
+  display:flex; gap:8px; overflow-x:auto;
+}
+.hero-thumb{
+  flex:0 0 auto; width:56px; height:56px;
+  border:2px solid var(--line); background:var(--bg);
+  padding:0; cursor:pointer; overflow:hidden;
+}
+.hero-thumb.aktif{ border-color: var(--amber); }
+.hero-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.hero-thumb-3d{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:100%;
+  font-family:var(--font-mono); font-size:11px; color:var(--steel);
+}
+
+/* ---------- Kart medya (görsel desteği) ---------- */
+.card-media img{
+  width:100%; height: 220px; object-fit: cover; display:block;
+}

@@ -36,6 +36,21 @@ function sepetToplamTutar() {
     return toplam + (urun ? urun.fiyat * kalem.adet : 0);
   }, 0);
 }
+function sepetEtiketliToplam() {
+  const sepet = sepetOku();
+  return sepet.reduce((toplam, kalem) => {
+    const urun = URUNLER.find(u => u.id === kalem.id);
+    return toplam + (urun && urun.etiket ? urun.fiyat * kalem.adet : 0);
+  }, 0);
+}
+
+function sepetEtiketsizVarMi() {
+  const sepet = sepetOku();
+  return sepet.some(kalem => {
+    const urun = URUNLER.find(u => u.id === kalem.id);
+    return urun && !urun.etiket;
+  });
+}
 
 function sepetGoruntuleGuncelle() {
   const sepet = sepetOku();
@@ -44,7 +59,17 @@ function sepetGoruntuleGuncelle() {
   const toplamEl = document.getElementById("sepetToplam");
 
   sayacEl.textContent = sepet.reduce((n, k) => n + k.adet, 0);
-  toplamEl.textContent = "———";
+  const etiketliToplam = sepetEtiketliToplam();
+  const etiketsizVar = sepetEtiketsizVarMi();
+  if (etiketliToplam > 0 && etiketsizVar) {
+    toplamEl.textContent = etiketliToplam.toLocaleString("tr-TR") + " ₺ + ETİKETSİZLER";
+  } else if (etiketliToplam > 0) {
+    toplamEl.textContent = etiketliToplam.toLocaleString("tr-TR") + " ₺";
+  } else if (etiketsizVar) {
+    toplamEl.textContent = "ETİKETSİZLER";
+  } else {
+    toplamEl.textContent = "———";
+  }
 
   icerikEl.innerHTML = "";
   if (sepet.length === 0) {
@@ -60,7 +85,7 @@ function sepetGoruntuleGuncelle() {
     satir.innerHTML = `
       <div>
         <div class="cart-item-name">${urun.isim}</div>
-        <div class="cart-item-meta">Adet: ${kalem.adet}</div>
+        <div class="cart-item-fiyat">${urun.etiket ? "Toplam= " + (urun.fiyat * kalem.adet).toLocaleString("tr-TR") + " ₺" : "ETİKETSİZ"}</div>
         <div class="cart-item-qty">
           <button class="qty-btn" data-id="${urun.id}" data-aksiyon="azalt">−</button>
           <span>${kalem.adet}</span>
@@ -76,6 +101,11 @@ function sepetGoruntuleGuncelle() {
     btn.addEventListener("click", () => {
       if (btn.dataset.aksiyon === "artir") miktarArtir(btn.dataset.id);
       else miktarAzalt(btn.dataset.id);
+    });
+  });
+    icerikEl.querySelectorAll(".cart-item-remove").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sepettenCikar(btn.dataset.id);
     });
   });
 }
