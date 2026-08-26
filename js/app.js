@@ -1,5 +1,17 @@
 // TODO: sipariş talebinin gideceği WhatsApp numarası / e-posta burada tanımlanacak
 const SIPARIS_EPOSTA = "ornek@eposta.com";
+function onayGoster(siparisNo) {
+  const mesajEl = document.getElementById("onayMesaj");
+  mesajEl.innerHTML = `Talebiniz alınmıştır.<br>Talep Numarası: ${siparisNo}<br>En kısa sürede dönüş yapılacaktır.`;
+  document.getElementById("onayOverlay").classList.add("acik");
+}
+
+function onayKapatBagla() {
+  document.getElementById("onayTamam").addEventListener("click", () => {
+    document.getElementById("onayOverlay").classList.remove("acik");
+    window.location.href = "urunler.html";
+  });
+}
 const SIPARIS_WHATSAPP = "905356537047"; // örnek: "905XXXXXXXXX" — boşsa e-posta kullanılır
 
 function medyaHtmlUret(item) {
@@ -161,4 +173,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   kategoriFiltreOlustur();
   sepetPanelBagla();
   sepetGoruntuleGuncelle();
+  onayKapatBagla();
 });

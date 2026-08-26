@@ -22,8 +22,43 @@ function ozelSiparisFormBagla() {
     durum.textContent = "Gönderiliyor...";
     durum.style.color = "var(--ink-dim)";
 
+    const adSoyad = form.querySelector('[name="adSoyad"]').value.trim();
+    const telefon = form.querySelector('[name="telefon"]').value.trim();
+    const eposta = form.querySelector('[name="eposta"]').value.trim();
+    const aciklama = form.querySelector('[name="aciklama"]').value.trim();
+    const iletisim = telefon || eposta;
+
+    if (!adSoyad) {
+      alert("Ad Soyad alanını doldurun.");
+      return;
+    }
+    if (!iletisim) {
+      alert("Telefon veya E-posta alanlarından en az birini doldurun.");
+      return;
+    }
+
+    let siparisNo = "";
+    try {
+      const sheetsYanit = await fetch(SHEETS_ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify({
+          anahtar: SHEETS_ANAHTAR,
+          tur: "Özel",
+          adSoyad: adSoyad,
+          iletisim: iletisim,
+          icerik: aciklama,
+          toplamTutar: ""
+        })
+      });
+      const sheetsSonuc = await sheetsYanit.json();
+      siparisNo = sheetsSonuc.siparisNo || "";
+    } catch (hata) {
+      console.error("Sheets kayıt hatası:", hata);
+    }
+
     try {
       const veri = new FormData(form);
+      if (siparisNo) veri.append("siparisNo", siparisNo);
       const yanit = await fetch(OZEL_SIPARIS_ENDPOINT, {
         method: "POST",
         body: veri,
@@ -31,14 +66,14 @@ function ozelSiparisFormBagla() {
       });
 
       if (yanit.ok) {
-        durum.textContent = "Talebiniz alındı. En kısa sürede dönüş yapılacaktır.";
-        durum.style.color = "var(--steel)";
         form.reset();
+        onayGoster(siparisNo || "———");
       } else {
         durum.textContent = "Gönderim başarısız oldu, tekrar deneyin.";
         durum.style.color = "var(--amber)";
       }
     } catch (hata) {
+      console.error("Gerçek hata:", hata);
       durum.textContent = "Bağlantı hatası, tekrar deneyin.";
       durum.style.color = "var(--amber)";
     }

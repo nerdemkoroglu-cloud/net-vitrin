@@ -114,8 +114,12 @@
       <input type="text" id="sepetAd" placeholder="Ad Soyad">
     </label>
     <label class="cart-field">
-      Telefon / E-posta
+      Telefon / E-posta (en az biri gerekli)
       <input type="text" id="sepetIletisim" placeholder="Telefon veya e-posta">
+    </label>
+    <label class="cart-field">
+      Not (opsiyonel)
+      <input type="text" id="sepetNot" placeholder="Siparişinizle ilgili kısa not">
     </label>
     <button class="btn-primary btn-full" id="siparisGonder">SİPARİŞİ GÖNDER</button>
     <p class="cart-note" id="sepetDurum"></p>
@@ -132,5 +136,11 @@
 <script src="js/sepet.js"></script>
 <script src="js/ozel-siparis.js"></script>
 <script src="js/app.js"></script>
+<div class="onay-overlay" id="onayOverlay">
+  <div class="onay-kutu">
+    <p class="onay-mesaj" id="onayMesaj"></p>
+    <button class="btn-primary" id="onayTamam">TAMAM</button>
+  </div>
+</div>
 </body>
 </html>

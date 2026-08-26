@@ -116,6 +116,7 @@ function siparisMetniOlustur() {
 
   const ad = document.getElementById("sepetAd").value.trim();
   const iletisim = document.getElementById("sepetIletisim").value.trim();
+  const not = document.getElementById("sepetNot").value.trim();
 
   let satirlar = sepet.map(kalem => {
     const urun = URUNLER.find(u => u.id === kalem.id);
@@ -126,6 +127,7 @@ function siparisMetniOlustur() {
   let baslik = "Sipariş talebi:\n";
   if (ad) baslik += `Ad Soyad: ${ad}\n`;
   if (iletisim) baslik += `İletişim: ${iletisim}\n`;
+  if (not) baslik += `Not: ${not}\n`;
 
   return baslik + "\n" + satirlar.join("\n");
 }
@@ -137,13 +139,36 @@ async function sepetSiparisiGonder() {
 
   const ad = document.getElementById("sepetAd").value.trim();
   const iletisim = document.getElementById("sepetIletisim").value.trim();
-  if (!ad || !iletisim) {
-    alert("Ad Soyad ve Telefon/E-posta alanlarını doldurun.");
+  if (!ad) {
+    alert("Ad Soyad alanını doldurun.");
+    return;
+  }
+  if (!iletisim) {
+    alert("Telefon veya E-posta alanlarından en az birini doldurun.");
     return;
   }
 
   durum.textContent = "Gönderiliyor...";
   durum.style.color = "var(--ink-dim)";
+
+  let siparisNo = "";
+  try {
+    const sheetsYanit = await fetch(SHEETS_ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify({
+        anahtar: SHEETS_ANAHTAR,
+        tur: "Sepet",
+        adSoyad: ad,
+        iletisim: iletisim,
+        icerik: metin,
+        toplamTutar: sepetToplamTutar()
+      })
+    });
+    const sheetsSonuc = await sheetsYanit.json();
+    siparisNo = sheetsSonuc.siparisNo || "";
+  } catch (hata) {
+    console.error("Sheets kayıt hatası:", hata);
+  }
 
   try {
     const yanit = await fetch(SEPET_SIPARIS_ENDPOINT, {
@@ -151,6 +176,7 @@ async function sepetSiparisiGonder() {
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
         talepTuru: "Sepet Siparişi",
+        siparisNo: siparisNo,
         adSoyad: ad,
         iletisim: iletisim,
         siparisOzeti: metin
@@ -158,10 +184,14 @@ async function sepetSiparisiGonder() {
     });
 
     if (yanit.ok) {
-      durum.textContent = "Siparişiniz alındı. En kısa sürede dönüş yapılacaktır.";
-      durum.style.color = "var(--steel)";
       localStorage.removeItem(SEPET_ANAHTAR);
+      document.getElementById("sepetAd").value = "";
+      document.getElementById("sepetIletisim").value = "";
+      document.getElementById("sepetNot").value = "";
       sepetGoruntuleGuncelle();
+      document.getElementById("sepetPanel").classList.remove("open");
+      document.getElementById("sepetOverlay").classList.remove("open");
+      onayGoster(siparisNo || "———");
     } else {
       durum.textContent = "Gönderim başarısız oldu, tekrar deneyin.";
       durum.style.color = "var(--amber)";
