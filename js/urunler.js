@@ -3,6 +3,7 @@ const SHEETS_ANAHTAR = "Parola.08";
 
 let URUNLER = [];
 let KATEGORILER = [];
+let SURUM_BILGISI = {};
 
 function dosyaVarMi(url) {
   return fetch(url, { method: "HEAD" }).then(r => r.ok).catch(() => false);
@@ -12,6 +13,7 @@ async function veriYukle() {
   const yanit = await fetch(`${SHEETS_ENDPOINT}?anahtar=${encodeURIComponent(SHEETS_ANAHTAR)}`);
   const veri = await yanit.json();
   KATEGORILER = veri.kategoriler.sort((a, b) => a.sira - b.sira);
+  SURUM_BILGISI = veri.surumBilgisi || {};
 
   URUNLER = await Promise.all(veri.urunler.map(async (u) => {
     u.model = u.hariciModel && u.hariciModel.trim() ? u.hariciModel.trim() : `modeller/${u.dosyaAdi}.glb`;

@@ -36,7 +36,20 @@
 
 <footer class="site-footer">
   <p>Sorularınız için: <a href="mailto:nerdemkoroglu@gmail.com">nerdemkoroglu@gmail.com</a></p>
+  <p id="surumBilgisi" style="font-size:10px; color:var(--ink-dim); margin-top:8px;"></p>
 </footer>
+
+<script>
+  fetch("https://script.google.com/macros/s/AKfycbwtZRC8W1zKp8Vyox-vHhb9WIUyF9lskFBID6g0LmovKUodXA6vK2y4vdZqVHPVMVs/exec?anahtar=Parola.08")
+    .then(r => r.json())
+    .then(veri => {
+      const el = document.getElementById("surumBilgisi");
+      if (el && veri.surumBilgisi && veri.surumBilgisi.surum) {
+        el.textContent = `${veri.surumBilgisi.surum} · ${veri.surumBilgisi.tarih} ${veri.surumBilgisi.saat}`;
+      }
+    })
+    .catch(() => {});
+</script>
 
 </body>
 </html>

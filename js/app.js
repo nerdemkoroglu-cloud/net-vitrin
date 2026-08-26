@@ -1,5 +1,12 @@
 // TODO: sipariş talebinin gideceği WhatsApp numarası / e-posta burada tanımlanacak
 const SIPARIS_EPOSTA = "ornek@eposta.com";
+
+function surumBilgisiGoster() {
+  const el = document.getElementById("surumBilgisi");
+  if (!el || !SURUM_BILGISI.surum) return;
+  el.textContent = `${SURUM_BILGISI.surum} · ${SURUM_BILGISI.tarih} ${SURUM_BILGISI.saat}`;
+}
+
 function onayGoster(siparisNo) {
   const mesajEl = document.getElementById("onayMesaj");
   mesajEl.innerHTML = `Talebiniz alınmıştır.<br>Talep Numarası: ${siparisNo}<br>En kısa sürede dönüş yapılacaktır.`;
@@ -174,4 +181,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   sepetPanelBagla();
   sepetGoruntuleGuncelle();
   onayKapatBagla();
+  surumBilgisiGoster();
 });
