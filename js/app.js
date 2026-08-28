@@ -113,7 +113,7 @@ function urunKartiOlustur(urun) {
     </div>
     <div class="product-card-body">
       <div class="product-name">${urun.isim}</div>
-      <div class="product-id">${urun.id}</div>
+      <div class="product-id">Stok Kodu: ${urun.id}</div>
       <div class="product-meta">${urun.olcu} · ${urun.malzeme}</div>
       ${atifHtml}
       <div class="product-row">

@@ -1,16 +1,86 @@
 :root{
-  --bg: #1B1B1D;
-  --panel: #232326;
-  --ink: #F2F0EA;
-  --ink-dim: #A8A6A0;
-  --steel: #5C7A94;
-  --amber: #E4A33B;
-  --line: #38383C;
+  /* ============ RENKLER ============ */
+  --bg: #1B1B1D;              /* sayfa arka planı */
+  --panel: #232326;           /* kart/panel arka planı */
+  --ink: #F2F0EA;             /* ana metin rengi */
+  --ink-dim: #A8A6A0;         /* soluk/ikincil metin rengi */
+  --steel: #5C7A94;           /* vurgu rengi (mavi-gri) */
+  --amber: #E4A33B;           /* vurgu rengi (turuncu, fiyat/buton) */
+  --line: #38383C;            /* çizgi/kenarlık rengi */
 
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-fiyat: Arial, Helvetica, sans-serif;
+  /* ============ FONT AİLELERİ ============ */
+  --font-display: 'Space Grotesk', sans-serif;   /* başlıklar */
+  --font-body: 'Inter', sans-serif;              /* gövde metni, form alanları */
+  --font-mono: 'JetBrains Mono', monospace;      /* etiket, buton, teknik veri */
+  --font-fiyat: Arial, Helvetica, sans-serif;    /* tüm fiyat/tutar alanları */
+
+  /* ============ YAZI BOYUTLARI — HEADER ============ */
+  --boyut-marka: 20px;              /* .brand-mark logo yanındaki işaret */
+  --boyut-nav: 14px;                /* .site-nav üst menü linkleri */
+  --boyut-sepet-buton: 13px;        /* .cart-btn üst SEPET butonu */
+
+  /* ============ YAZI BOYUTLARI — HERO (ÖNE ÇIKAN ÜRÜN) ============ */
+  --boyut-hero-eyebrow: 12px;       /* .spec-eyebrow "ÖNE ÇIKAN MODEL" yazısı */
+  --boyut-hero-id: 12px;            /* .spec-id hero'daki stok kodu */
+  --boyut-hero-baslik: 40px;        /* .spec-title ürün adı (hero) */
+  --boyut-hero-baslik-mobil: 30px;  /* .spec-title mobil görünümde küçültülmüş hali */
+  --boyut-hero-liste-etiket: 11px;  /* .spec-list dt (Ölçü/Malzeme/Süre etiketleri) */
+  --boyut-hero-liste-deger: 14px;   /* .spec-list dd (Ölçü/Malzeme/Süre değerleri) */
+  --boyut-hero-atif: 12px;          /* .spec-atif lisans/atıf notu (hero) */
+  --boyut-hero-fiyat: 26px;         /* .spec-price hero'daki büyük fiyat */
+
+  /* ============ YAZI BOYUTLARI — GENEL BUTON ============ */
+  --boyut-buton-ana: 13px;          /* .btn-primary tüm ana butonlar */
+
+  /* ============ YAZI BOYUTLARI — KATALOG BAŞLIĞI ============ */
+  --boyut-katalog-index: 14px;      /* .catalog-index "01" gibi numaralar */
+  --boyut-katalog-baslik: 24px;     /* .catalog-header h2 "Katalog" başlığı */
+
+  /* ============ YAZI BOYUTLARI — ÜRÜN KARTI ============ */
+  --boyut-stok-etiket: 10px;        /* .stok-etiket "STOKTA YOK" rozeti */
+  --boyut-urun-adi: 18px;           /* .product-name kart üzerindeki ürün adı */
+  --boyut-urun-id: 10px;            /* .product-id "Stok Kodu: ..." satırı */
+  --boyut-urun-meta: 12px;          /* .product-meta ölçü · malzeme satırı */
+  --boyut-urun-atif: 11px;          /* .product-atif lisans/atıf notu (kart) */
+  --boyut-urun-fiyat: 15px;         /* .product-price kart üzerindeki fiyat */
+  --boyut-buton-ekle: 12px;         /* .btn-add "SEPETE EKLE" (kart içi) */
+
+  /* ============ YAZI BOYUTLARI — ÖZEL SİPARİŞ FORMU ============ */
+  --boyut-form-etiket: 12px;        /* .custom-order-form label alan başlıkları */
+  --boyut-form-girdi: 14px;         /* .custom-order-form input/textarea */
+  --boyut-form-durum: 13px;         /* .custom-order-status "Gönderiliyor..." vb. */
+
+  /* ============ YAZI BOYUTLARI — SEPET PANELİ ============ */
+  --boyut-sepet-kapat: 16px;        /* .cart-panel-header button (✕ ikonu) */
+  --boyut-sepet-satir: 14px;        /* .cart-item ürün satırı genel boyut */
+  --boyut-sepet-meta: 12px;         /* .cart-item-meta adet/yardımcı yazı */
+  --boyut-sepet-fiyat: 15px;        /* .cart-item-fiyat satır fiyatı */
+  --boyut-sepet-kaldir: 12px;       /* .cart-item-remove "Kaldır" yazısı */
+  --boyut-sepet-qty: 14px;          /* .qty-btn artı/eksi butonları */
+  --boyut-sepet-alan-etiket: 11px;  /* .cart-field Ad Soyad/Telefon başlıkları */
+  --boyut-sepet-alan-girdi: 14px;   /* .cart-field input */
+  --boyut-sepet-yari-buton: 12px;   /* .btn-half (varsa ikili buton düzeni) */
+  --boyut-sepet-toplam: 19px;       /* .cart-total-row dip toplam yazısı */
+  --boyut-sepet-not: 11px;          /* .cart-note ödeme/bilgi notu */
+
+  /* ============ YAZI BOYUTLARI — FOOTER ============ */
+  --boyut-footer: 13px;             /* .site-footer alt bilgi satırı */
+
+  /* ============ YAZI BOYUTLARI — ANA SAYFA (LANDING) ============ */
+  --boyut-landing-mark: 40px;       /* .landing-mark büyük logo işareti */
+  --boyut-landing-baslik: 48px;     /* .landing-title "NET-VİTRİN" büyük başlık */
+  --boyut-landing-aciklama: 16px;   /* .landing-desc tanıtım metni */
+  --boyut-landing-buton: 14px;      /* .landing-btn "ÜRÜNLERİ İNCELE" */
+
+  /* ============ YAZI BOYUTLARI — KATEGORİ FİLTRESİ ============ */
+  --boyut-filtre-buton: 12px;       /* .filtre-btn Tümü/Figür/Elektronik vb. */
+
+  /* ============ YAZI BOYUTLARI — MEDYA/GALERİ ============ */
+  --boyut-medya-placeholder: 12px;  /* .medya-placeholder "Görsel yakında..." */
+  --boyut-hero-thumb-3d: 11px;      /* .hero-thumb-3d küçük resimdeki "3D" yazısı */
+
+  /* ============ YAZI BOYUTLARI — ONAY POP-UP ============ */
+  --boyut-onay-mesaj: 15px;         /* .onay-mesaj sipariş onay penceresi metni */
 }
 
 *{ box-sizing: border-box; margin:0; padding:0; }
@@ -38,12 +108,12 @@ a{ color: inherit; text-decoration: none; }
   z-index: 20;
 }
 .brand{ display:flex; align-items:center; gap:10px; font-family: var(--font-display); letter-spacing: 0.08em; }
-.brand-mark{ color: var(--amber); font-size: 20px; }
-.site-nav{ display:flex; gap: 28px; font-size: 14px; color: var(--ink-dim); }
+.brand-mark{ color: var(--amber); font-size: var(--boyut-marka); }
+.site-nav{ display:flex; gap: 28px; font-size: var(--boyut-nav); color: var(--ink-dim); }
 .site-nav a:hover{ color: var(--ink); }
 .cart-btn{
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: var(--boyut-sepet-buton);
   background: transparent;
   border: 1px solid var(--line);
   color: var(--ink);
@@ -82,16 +152,16 @@ a{ color: inherit; text-decoration: none; }
 }
 .spec-eyebrow{
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--boyut-hero-eyebrow);
   color: var(--steel);
   letter-spacing: 0.12em;
   margin-bottom: 12px;
-  .spec-id{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); margin-bottom: 8px; }
-  .product-id{ font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim); }
 }
+.spec-id{ font-family: var(--font-mono); font-size: var(--boyut-hero-id); color: var(--ink-dim); margin-bottom: 8px; }
+.product-id{ font-family: var(--font-mono); font-size: var(--boyut-urun-id); color: var(--ink-dim); }
 .spec-title{
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: var(--boyut-hero-baslik);
   font-weight: 500;
   margin-bottom: 16px;
 }
@@ -108,23 +178,23 @@ a{ color: inherit; text-decoration: none; }
 .spec-list div{ display:flex; flex-direction: column; gap:4px; }
 .spec-list dt{
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--boyut-hero-liste-etiket);
   color: var(--ink-dim);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.spec-list dd{ font-family: var(--font-mono); font-size: 14px; }
+.spec-list dd{ font-family: var(--font-mono); font-size: var(--boyut-hero-liste-deger); }
 
-.spec-atif{ font-size: 12px; color: var(--ink-dim); margin-bottom: 20px; font-style: italic; }
+.spec-atif{ font-size: var(--boyut-hero-atif); color: var(--ink-dim); margin-bottom: 20px; font-style: italic; }
 
-.product-atif{ font-size: 11px; color: var(--ink-dim); font-style: italic; }
+.product-atif{ font-size: var(--boyut-urun-atif); color: var(--ink-dim); font-style: italic; }
 
 .spec-price-row{ display:flex; align-items:center; gap: 20px; }
-.spec-price{ font-family: var(--font-fiyat); font-size: 26px; color: var(--amber); }
+.spec-price{ font-family: var(--font-fiyat); font-size: var(--boyut-hero-fiyat); color: var(--amber); }
 
 .btn-primary{
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: var(--boyut-buton-ana);
   letter-spacing: 0.06em;
   background: var(--amber);
   color: #1B1B1D;
@@ -144,8 +214,8 @@ a{ color: inherit; text-decoration: none; }
   gap: 12px;
   margin-bottom: 32px;
 }
-.catalog-index{ font-family: var(--font-mono); color: var(--steel); font-size: 14px; }
-.catalog-header h2{ font-family: var(--font-display); font-size: 24px; font-weight: 500; }
+.catalog-index{ font-family: var(--font-mono); color: var(--steel); font-size: var(--boyut-katalog-index); }
+.catalog-header h2{ font-family: var(--font-display); font-size: var(--boyut-katalog-baslik); font-weight: 500; }
 
 .product-grid{
   display:grid;
@@ -162,7 +232,7 @@ a{ color: inherit; text-decoration: none; }
 .stok-etiket{
   position: absolute; top: 10px; right: 10px;
   background: var(--bg); color: var(--ink-dim);
-  font-family: var(--font-mono); font-size: 10px;
+  font-family: var(--font-mono); font-size: var(--boyut-stok-etiket);
   letter-spacing: 0.06em; padding: 4px 8px;
   border: 1px solid var(--line);
 }
@@ -174,13 +244,13 @@ a{ color: inherit; text-decoration: none; }
   --poster-color: transparent;
 }
 .product-card-body{ padding: 16px; display:flex; flex-direction:column; gap:8px; }
-.product-name{ font-family: var(--font-display); font-size: 16px; }
-.product-meta{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); }
+.product-name{ font-family: var(--font-display); font-size: var(--boyut-urun-adi); }
+.product-meta{ font-family: var(--font-mono); font-size: var(--boyut-urun-meta); color: var(--ink-dim); }
 .product-row{ display:flex; justify-content:space-between; align-items:center; margin-top: 8px; }
-.product-price{ font-family: var(--font-fiyat); color: var(--amber); font-size: 15px; }
+.product-price{ font-family: var(--font-fiyat); color: var(--amber); font-size: var(--boyut-urun-fiyat); }
 .btn-add{
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--boyut-buton-ekle);
   background: transparent;
   border: 1px solid var(--steel);
   color: var(--ink);
@@ -197,18 +267,18 @@ a{ color: inherit; text-decoration: none; }
 }
 .custom-order-form label{
   display:flex; flex-direction:column; gap:6px;
-  font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim);
+  font-family: var(--font-mono); font-size: var(--boyut-form-etiket); color: var(--ink-dim);
   text-transform: uppercase; letter-spacing: 0.06em;
 }
 .custom-order-form input,
 .custom-order-form textarea{
-  font-family: var(--font-body); font-size: 14px; color: var(--ink);
+  font-family: var(--font-body); font-size: var(--boyut-form-girdi); color: var(--ink);
   background: var(--panel); border: 1px solid var(--line);
   padding: 10px 12px; resize: vertical;
 }
 .custom-order-form input:focus,
 .custom-order-form textarea:focus{ outline: none; border-color: var(--steel); }
-.custom-order-status{ font-size: 13px; min-height: 18px; }
+.custom-order-status{ font-size: var(--boyut-form-durum); min-height: 18px; }
 
 /* ---------- Cart panel ---------- */
 .cart-panel{
@@ -231,16 +301,22 @@ a{ color: inherit; text-decoration: none; }
   padding: 20px; border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
 }
-.cart-panel-header button{ background:none; border:none; color: var(--ink); font-size:16px; cursor:pointer; }
+.cart-panel-header button{ background:none; border:none; color: var(--ink); font-size:var(--boyut-sepet-kapat); cursor:pointer; }
 .cart-items{ flex:1; overflow-y:auto; padding: 16px 20px; display:flex; flex-direction:column; gap:14px; }
-.cart-item{ display:flex; justify-content:space-between; gap:10px; font-size: 14px; border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
+.cart-item{ display:flex; justify-content:space-between; gap:10px; font-size: var(--boyut-sepet-satir); border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
 .cart-item-name{ font-weight: 500; }
-.cart-item-meta{ font-family: var(--font-mono); font-size:12px; color: var(--ink-dim); margin-top:4px; }
-.cart-item-remove{ background:none; border:none; color: var(--ink-dim); cursor:pointer; font-size:12px; }
+.cart-item-meta{ font-family: var(--font-mono); font-size:var(--boyut-sepet-meta); color: var(--ink-dim); margin-top:4px; }
+.cart-item-fiyat{
+  font-family: var(--font-fiyat);
+  font-size: var(--boyut-sepet-fiyat);
+  color: var(--amber);
+  margin-top: 4px;
+}
+.cart-item-remove{ background:none; border:none; color: var(--ink-dim); cursor:pointer; font-size:var(--boyut-sepet-kaldir); }
 .cart-item-qty{ display:flex; align-items:center; gap:8px; margin-top:6px; }
 .qty-btn{
   width: 22px; height: 22px;
-  font-family: var(--font-mono); font-size: 14px;
+  font-family: var(--font-mono); font-size: var(--boyut-sepet-qty);
   background: transparent; border: 1px solid var(--line); color: var(--ink);
   cursor: pointer; line-height: 1;
 }
@@ -248,20 +324,20 @@ a{ color: inherit; text-decoration: none; }
 .cart-footer{ padding: 20px; border-top: 1px solid var(--line); }
 .cart-field{
   display:flex; flex-direction:column; gap:4px;
-  font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim);
+  font-family: var(--font-mono); font-size: var(--boyut-sepet-alan-etiket); color: var(--ink-dim);
   text-transform: uppercase; letter-spacing: 0.06em;
   margin-bottom: 12px;
 }
 .cart-field input{
-  font-family: var(--font-body); font-size: 14px; color: var(--ink);
+  font-family: var(--font-body); font-size: var(--boyut-sepet-alan-girdi); color: var(--ink);
   background: var(--panel); border: 1px solid var(--line);
   padding: 8px 10px;
 }
 .cart-field input:focus{ outline: none; border-color: var(--steel); }
 .cart-btn-row{ display:flex; gap: 10px; margin-bottom: 14px; }
-.btn-half{ flex: 1; font-size: 12px; padding: 12px 8px; }
-.cart-total-row{ display:flex; justify-content:space-between; font-family: var(--font-fiyat); margin-bottom: 14px; font-size: 19px; }
-.cart-note{ font-size: 11px; color: var(--ink-dim); margin-top: 10px; }
+.btn-half{ flex: 1; font-size: var(--boyut-sepet-yari-buton); padding: 12px 8px; }
+.cart-total-row{ display:flex; justify-content:space-between; font-family: var(--font-fiyat); margin-bottom: 14px; font-size: var(--boyut-sepet-toplam); }
+.cart-note{ font-size: var(--boyut-sepet-not); color: var(--ink-dim); margin-top: 10px; }
 
 .cart-overlay{
   position: fixed; inset:0; background: rgba(0,0,0,0.5);
@@ -273,7 +349,7 @@ a{ color: inherit; text-decoration: none; }
 /* ---------- Footer ---------- */
 .site-footer{
   padding: 32px; text-align:center; color: var(--ink-dim);
-  font-family: var(--font-mono); font-size: 13px;
+  font-family: var(--font-mono); font-size: var(--boyut-footer);
   border-top: 1px solid var(--line);
 }
 
@@ -281,7 +357,7 @@ a{ color: inherit; text-decoration: none; }
 @media (max-width: 860px){
   .hero{ grid-template-columns: 1fr; }
   .hero-viewer{ border-right:none; border-bottom: 1px solid var(--line); height: 320px; }
-  .spec-title{ font-size: 30px; }
+  .spec-title{ font-size: var(--boyut-hero-baslik-mobil); }
 }
 /* ---------- Landing ---------- */
 .landing{
@@ -297,22 +373,22 @@ a{ color: inherit; text-decoration: none; }
   background-size: 32px 32px;
 }
 .landing-content{ max-width: 560px; margin: 0 auto; }
-.landing-mark{ display:block; font-size: 40px; color: var(--amber); margin-bottom: 20px; }
+.landing-mark{ display:block; font-size: var(--boyut-landing-mark); color: var(--amber); margin-bottom: 20px; }
 .landing-title{
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: var(--boyut-landing-baslik);
   font-weight: 500;
   letter-spacing: 0.04em;
   margin-bottom: 20px;
 }
 .landing-desc{
   color: var(--ink-dim);
-  font-size: 16px;
+  font-size: var(--boyut-landing-aciklama);
   margin-bottom: 36px;
 }
 .landing-btn{
   display:inline-block;
-  font-size: 14px;
+  font-size: var(--boyut-landing-buton);
   padding: 14px 28px;
 }
 .header-logo{
@@ -329,7 +405,7 @@ a{ color: inherit; text-decoration: none; }
 .kategori-filtre{ display:flex; gap:10px; margin-bottom: 24px; flex-wrap: wrap; }
 .filtre-btn{
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--boyut-filtre-buton);
   background: transparent;
   border: 1px solid var(--line);
   color: var(--ink-dim);
@@ -338,12 +414,6 @@ a{ color: inherit; text-decoration: none; }
 }
 .filtre-btn:hover{ border-color: var(--steel); color: var(--ink); }
 .filtre-btn.aktif{ border-color: var(--amber); color: var(--amber); }
-.cart-item-fiyat{
-  font-family: var(--font-fiyat);
-  font-size: 15px;
-  color: var(--amber);
-  margin-top: 4px;
-}
 
 /* ---------- Hero medya galerisi ---------- */
 .hero-viewer{ position: relative; }
@@ -353,7 +423,7 @@ a{ color: inherit; text-decoration: none; }
 .medya-placeholder{
   width:100%; height:100%;
   display:flex; align-items:center; justify-content:center;
-  color:var(--ink-dim); font-family:var(--font-mono); font-size:12px;
+  color:var(--ink-dim); font-family:var(--font-mono); font-size:var(--boyut-medya-placeholder);
   text-align:center; padding:10px;
 }
 .hero-thumb-serit{
@@ -370,7 +440,7 @@ a{ color: inherit; text-decoration: none; }
 .hero-thumb-3d{
   display:flex; align-items:center; justify-content:center;
   width:100%; height:100%;
-  font-family:var(--font-mono); font-size:11px; color:var(--steel);
+  font-family:var(--font-mono); font-size:var(--boyut-hero-thumb-3d); color:var(--steel);
 }
 
 /* ---------- Kart medya (görsel desteği) ---------- */
@@ -396,7 +466,7 @@ a{ color: inherit; text-decoration: none; }
   text-align: center;
 }
 .onay-mesaj{
-  font-size: 15px;
+  font-size: var(--boyut-onay-mesaj);
   margin-bottom: 20px;
   line-height: 1.6;
 }
