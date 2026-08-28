@@ -40,15 +40,20 @@
 </footer>
 
 <script>
-  fetch("https://script.google.com/macros/s/AKfycbwtZRC8W1zKp8Vyox-vHhb9WIUyF9lskFBID6g0LmovKUodXA6vK2y4vdZqVHPVMVs/exec?anahtar=Parola.08")
-    .then(r => r.json())
-    .then(veri => {
-      const el = document.getElementById("surumBilgisi");
-      if (el && veri.surumBilgisi && veri.surumBilgisi.surum) {
-        el.textContent = `${veri.surumBilgisi.surum} · ${veri.surumBilgisi.tarih} ${veri.surumBilgisi.saat}`;
-      }
-    })
-    .catch(() => {});
+  function surumCek(deneme) {
+    fetch("https://script.google.com/macros/s/AKfycbwtZRC8W1zKp8Vyox-vHhb9WIUyF9lskFBID6g0LmovKUodXA6vK2y4vdZqVHPVMVs/exec?anahtar=Parola.08")
+      .then(r => r.json())
+      .then(veri => {
+        const el = document.getElementById("surumBilgisi");
+        if (el && veri.surumBilgisi && veri.surumBilgisi.surum) {
+          el.textContent = `${veri.surumBilgisi.surum} · ${veri.surumBilgisi.tarih} ${veri.surumBilgisi.saat}`;
+        }
+      })
+      .catch(() => {
+        if (deneme < 2) setTimeout(() => surumCek(deneme + 1), 1500);
+      });
+  }
+  surumCek(0);
 </script>
 
 </body>
