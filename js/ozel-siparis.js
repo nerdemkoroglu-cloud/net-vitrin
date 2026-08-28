@@ -3,7 +3,7 @@
 // "form endpoint" adresini aşağıya yapıştır. Adres şu formatta olur:
 // https://formspree.io/f/xxxxxxxx
 
-const OZEL_SIPARIS_ENDPOINT = "https://formspree.io/f/xljrkkvr";
+// OZEL_SIPARIS_ENDPOINT artık js/config.js dosyasındaki FORMSPREE_ENDPOINT olarak geliyor.
 
 function ozelSiparisFormBagla() {
   const form = document.getElementById("ozelSiparisForm");
@@ -13,7 +13,7 @@ function ozelSiparisFormBagla() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (OZEL_SIPARIS_ENDPOINT.includes("BURAYA_FORM_ID_YAZILACAK")) {
+    if (FORMSPREE_ENDPOINT.includes("BURAYA_FORM_ID_YAZILACAK")) {
       durum.textContent = "Form henüz bağlanmadı. (OZEL_SIPARIS_ENDPOINT ayarlanmalı)";
       durum.style.color = "var(--amber)";
       return;
@@ -59,7 +59,7 @@ function ozelSiparisFormBagla() {
     try {
       const veri = new FormData(form);
       if (siparisNo) veri.append("siparisNo", siparisNo);
-      const yanit = await fetch(OZEL_SIPARIS_ENDPOINT, {
+      const yanit = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         body: veri,
         headers: { "Accept": "application/json" }

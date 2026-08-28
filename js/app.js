@@ -1,10 +1,16 @@
-// TODO: sipariş talebinin gideceği WhatsApp numarası / e-posta burada tanımlanacak
-const SIPARIS_EPOSTA = "ornek@eposta.com";
+// SIPARIS_EPOSTA ve SIPARIS_WHATSAPP artık js/config.js dosyasından geliyor.
 
 function surumBilgisiGoster() {
   const el = document.getElementById("surumBilgisi");
   if (!el || !SURUM_BILGISI.surum) return;
   el.textContent = `${SURUM_BILGISI.surum} · ${SURUM_BILGISI.tarih} ${SURUM_BILGISI.saat}`;
+}
+
+function iletisimMailGoster() {
+  const el = document.getElementById("iletisimMail");
+  if (!el) return;
+  el.href = `mailto:${SIPARIS_EPOSTA}`;
+  el.textContent = SIPARIS_EPOSTA;
 }
 
 function onayGoster(siparisNo) {
@@ -19,7 +25,6 @@ function onayKapatBagla() {
     window.location.href = "urunler.html";
   });
 }
-const SIPARIS_WHATSAPP = "905356537047"; // örnek: "905XXXXXXXXX" — boşsa e-posta kullanılır
 
 function medyaHtmlUret(item) {
   if (!item) {
@@ -182,4 +187,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   sepetGoruntuleGuncelle();
   onayKapatBagla();
   surumBilgisiGoster();
+  iletisimMailGoster();
 });

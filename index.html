@@ -11,6 +11,7 @@
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <link rel="stylesheet" href="style.css">
+<script src="js/config.js"></script>
 </head>
 <body>
 
@@ -35,13 +36,19 @@
 </section>
 
 <footer class="site-footer">
-  <p>Sorularınız için: <a href="mailto:nerdemkoroglu@gmail.com">nerdemkoroglu@gmail.com</a></p>
+  <p>Sorularınız için: <a id="iletisimMail" href="#"></a></p>
   <p id="surumBilgisi" style="font-size:10px; color:var(--ink-dim); margin-top:8px;"></p>
 </footer>
 
 <script>
+  const iletisimEl = document.getElementById("iletisimMail");
+  if (iletisimEl) {
+    iletisimEl.href = `mailto:${SIPARIS_EPOSTA}`;
+    iletisimEl.textContent = SIPARIS_EPOSTA;
+  }
+
   function surumCek(deneme) {
-    fetch("https://script.google.com/macros/s/AKfycbwtZRC8W1zKp8Vyox-vHhb9WIUyF9lskFBID6g0LmovKUodXA6vK2y4vdZqVHPVMVs/exec?anahtar=Parola.08")
+    fetch(`${SHEETS_ENDPOINT}?anahtar=${encodeURIComponent(SHEETS_ANAHTAR)}`)
       .then(r => r.json())
       .then(veri => {
         const el = document.getElementById("surumBilgisi");

@@ -1,5 +1,4 @@
-const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwtZRC8W1zKp8Vyox-vHhb9WIUyF9lskFBID6g0LmovKUodXA6vK2y4vdZqVHPVMVs/exec";
-const SHEETS_ANAHTAR = "Parola.08";
+// SHEETS_ENDPOINT ve SHEETS_ANAHTAR artık js/config.js dosyasından geliyor.
 
 let URUNLER = [];
 let KATEGORILER = [];

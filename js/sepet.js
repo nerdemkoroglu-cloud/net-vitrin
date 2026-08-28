@@ -1,4 +1,4 @@
-const SEPET_SIPARIS_ENDPOINT = "https://formspree.io/f/xljrkkvr";
+// SEPET_SIPARIS_ENDPOINT artık js/config.js dosyasındaki FORMSPREE_ENDPOINT olarak geliyor.
 const SEPET_ANAHTAR = "vitrin_sepet";
 
 function sepetOku() {
@@ -171,7 +171,7 @@ async function sepetSiparisiGonder() {
   }
 
   try {
-    const yanit = await fetch(SEPET_SIPARIS_ENDPOINT, {
+    const yanit = await fetch(FORMSPREE_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
