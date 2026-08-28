@@ -66,6 +66,7 @@ function heroRenderEt(urun) {
     });
   }
 
+  document.getElementById("heroId").textContent = `Stok Kodu: ${urun.id}`;
   document.getElementById("heroBaslik").textContent = urun.isim;
   document.getElementById("heroAciklama").textContent = urun.aciklama;
   document.getElementById("heroFiyat").textContent = urun.etiket ? (urun.fiyat.toLocaleString("tr-TR") + " ₺") : "———";

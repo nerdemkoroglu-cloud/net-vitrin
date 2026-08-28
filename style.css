@@ -21,7 +21,7 @@
 
   /* ============ YAZI BOYUTLARI — HERO (ÖNE ÇIKAN ÜRÜN) ============ */
   --boyut-hero-eyebrow: 12px;       /* .spec-eyebrow "ÖNE ÇIKAN MODEL" yazısı */
-  --boyut-hero-id: 12px;            /* .spec-id hero'daki stok kodu */
+  --boyut-hero-id: 10px;            /* .spec-id hero'daki stok kodu */
   --boyut-hero-baslik: 40px;        /* .spec-title ürün adı (hero) */
   --boyut-hero-baslik-mobil: 30px;  /* .spec-title mobil görünümde küçültülmüş hali */
   --boyut-hero-liste-etiket: 11px;  /* .spec-list dt (Ölçü/Malzeme/Süre etiketleri) */
